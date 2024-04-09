@@ -135,7 +135,7 @@ fetch('http://localhost:3000/api/menuItems')
                         <div class="w-100 d-flex flex-column text-start ps-4">
                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                 <span>${item.name}</span>
-                                <span class="text-primary">Rs${item.price}</span>
+                                <span class="text-primary">Rs ${item.price}</span>
                             </h5>
                             <small class="fst-italic">${item.description}</small>
                         </div>
@@ -165,5 +165,6 @@ fetch('http://localhost:3000/api/menuItems')
         },
         body:JSON.stringify(data)
     })
-    .then((res) => {console.log(res.json());});
+    .then((res) => {console.log(res.json());}).
+    then(() => formData.reset());
 });
