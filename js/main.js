@@ -168,3 +168,72 @@ fetch('http://localhost:3000/api/menuItems')
     .then((res) => {console.log(res.json());}).
     then(() => formData.reset());
 });
+
+
+feedback.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(feedback);
+    for (const [key, value] of formData) {
+        console.log(key,value);
+      }
+    
+    let data ={}
+    formData.forEach((value, key) => data[key] = value);
+
+    fetch('http://localhost:3000/api/feedback',{
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(data)
+    })
+    .then((res) => {console.log(res.json());}).
+    then(() => feedback.reset());
+    populateTestimonials()
+})
+
+
+async function fetchFeedback() {
+    try {
+        const response = await fetch('http://localhost:3000/api/feedback'); // Adjust the API endpoint accordingly
+        if (!response.ok) {
+            throw new Error('Failed to fetch feedback');
+        }
+        const feedbackData = await response.json();
+        return feedbackData;
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+        return null;
+    }
+}
+
+// Function to populate testimonial items
+const populateTestimonials=async()=> {
+    const feedbackData = await fetchFeedback('http://localhost:3000/api/feedback');
+    const testimonialContainer = document.getElementById('testimonialContainer');
+    if (feedbackData && feedbackData.length > 0) {
+        feedbackData.forEach(feedback => {
+            // Create testimonial item
+            const testimonialItem = document.createElement('div');
+            testimonialItem.classList.add('testimonial-item', 'bg-transparent', 'border', 'rounded', 'p-4','ml-5','mr-5','mb-2' );
+            testimonialItem.innerHTML = `
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p>${feedback.Comments}</p>
+                        <div class="d-flex align-items-center">
+                            
+                            <div class="ps-3">
+                                <h5 class="mb-1">${feedback.UserName}</h5>
+                            </div>
+                        </div>
+            `;
+            // Append testimonial item to container
+            testimonialContainer.appendChild(testimonialItem);
+        });
+    } else {
+        // Display message if no feedback is available
+        testimonialContainer.innerHTML = '<p>No feedback available</p>';
+    }
+}
+
+// Call the function to populate testimonials when the page loads
+window.onload = populateTestimonials();

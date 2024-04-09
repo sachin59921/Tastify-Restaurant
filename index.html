@@ -699,10 +699,10 @@
             <div class="container">
                 <div class="text-center">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
-                    <h1 class="mb-5">Our Clients Say!!!</h1>
+                    <h1 class="mb-5">Our Customer Say!!!</h1>
                 </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item bg-transparent border rounded p-4">
+                <div class="owl-carousel testimonial-carousel" id="testimonialContainer">
+                    <!-- <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                         <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
                         <div class="d-flex align-items-center">
@@ -711,12 +711,12 @@
                                 <h5 class="mb-1">Jenny</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-item bg-transparent border rounded p-4">
+                    </div> -->
+                    <!-- <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                         <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
                         <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 50px; height: 50px;">
+                            
                             <div class="ps-3">
                                 <h5 class="mb-1">Nile</h5>
                             </div>
@@ -741,7 +741,7 @@
                                 <h5 class="mb-1">kenny</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -753,17 +753,17 @@
         </div>
         <div class="d-flex justify-content-center">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-                <form>
+                <form id="feedback">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" name="UserName">
                                 <label for="name">Your Name</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                <textarea class="form-control" name="Comments" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
                                 <label for="message">Your Feedback Message.....</label>
                             </div>
                         </div>
