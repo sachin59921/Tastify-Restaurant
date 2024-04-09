@@ -117,3 +117,53 @@
     
 })(jQuery);
 
+
+fetch('http://localhost:3000/api/menuItems')
+.then(response => response.json())
+    .then(menuItems => {
+        // Get the container element
+        const container = document.getElementById('menuItemsContainer');
+
+        // Iterate over each menu item
+        menuItems.forEach(item => {
+            // Create HTML elements for the item
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('col-lg-6');
+            itemElement.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <img class="flex-shrink-0 img-fluid rounded" src="http://localhost:3000/${item.image}" alt="" style="width: 80px;">
+                        <div class="w-100 d-flex flex-column text-start ps-4">
+                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                <span>${item.name}</span>
+                                <span class="text-primary">Rs${item.price}</span>
+                            </h5>
+                            <small class="fst-italic">${item.description}</small>
+                        </div>
+                    </div>
+                `;
+            menuItemsContainer.appendChild(itemElement);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching menu items:', error);
+    });
+
+
+    reservation.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(reservation);
+    for (const [key, value] of formData) {
+        console.log(key,value);
+      }
+    let data = {};
+    formData.forEach((value, key) => data[key] = value);
+
+    fetch('http://localhost:3000/api/reserve',{
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(data)
+    })
+    .then((res) => {console.log(res.json());});
+});
