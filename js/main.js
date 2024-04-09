@@ -166,7 +166,7 @@ fetch('http://localhost:3000/api/menuItems')
         body:JSON.stringify(data)
     })
     .then((res) => {console.log(res.json());}).
-    then(() => formData.reset());
+    then(() => reservation.reset());
 });
 
 
@@ -189,7 +189,7 @@ feedback.addEventListener('submit', (e) => {
     })
     .then((res) => {console.log(res.json());}).
     then(() => feedback.reset());
-    populateTestimonials()
+    window.location.reload();
 })
 
 
